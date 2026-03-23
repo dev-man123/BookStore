@@ -17,7 +17,9 @@ final class ImageLoader {
 extension ImageLoader {
     func load(urlString: String,completion: @escaping (UIImage?) -> Void) {
         if let cachedImage = cache.object(forKey: urlString as NSString) {
-            completion(cachedImage)
+            DispatchQueue.main.async {
+                completion(cachedImage)
+            }
             return
         }
         
@@ -26,9 +28,21 @@ extension ImageLoader {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { (data, _ ,_) in
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if let error = error {
+                print("Error id",error.localizedDescription)
+                DispatchQueue.main.async{
+                    completion(nil)
+                }
+                return
+            }
+            
             guard let data = data, let image = UIImage(data: data) else {
-                completion(nil)
+                DispatchQueue.main.async {
+                    print("Failed to decode the image")
+                    completion(nil)
+                }
                 return
             }
             self.cache.setObject(image, forKey: urlString as NSString)

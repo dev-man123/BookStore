@@ -7,7 +7,7 @@
     "rating": 4.8,
     "price": 499,
     "tag": ["bestSeller"],
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780735211292-M.jpg"
+    "imageUrl": "https://books.google.com/books/content?id=Yj9jDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "2",
@@ -17,7 +17,7 @@
     "rating": 4.7,
     "price": 399,
     "tag": ["bestSeller","trending"],
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781455586691-M.jpg"
+    "imageUrl": "https://books.google.com/books/content?id=SlhADAAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "3",
@@ -27,7 +27,7 @@
     "rating": 4.9,
     "price": 450,
     "tag": ["bestSeller"],
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780857197689-M.jpg"
+    "imageUrl": "https://books.google.com/books/content?id=TnrrDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "4",
@@ -37,7 +37,7 @@
     "rating": 4.6,
     "price": 350,
     "tag": ["trending"],
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781612680194-M.jpg"
+    "imageUrl": "https://books.google.com/books/content?id=KQ4XBAAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "5",
@@ -47,7 +47,7 @@
     "rating": 4.5,
     "price": 420,
     "tag": ["trending"],
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780143130727-M.jpg"
+    "imageUrl": "https://books.google.com/books/content?id=H2v4DQAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "6",
@@ -57,7 +57,7 @@
     "rating": 4.4,
     "price": 300,
     "tag": ["bestSeller"],
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781585424337-M.jpg"
+    "imageUrl": "https://books.google.com/books/content?id=FQ8lDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "7",
@@ -67,7 +67,7 @@
     "rating": 4.7,
     "price": 380,
     "tag": ["bestSeller","trending"],
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780061122415-M.jpg"
+    "imageUrl": "https://books.google.com/books/content?id=6JblDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "8",
@@ -77,6 +77,6 @@
     "rating": 4.6,
     "price": 410,
     "tag": ["bestSeller","trending"],
-    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781591846444-M.jpg"
+    "imageUrl": "https://books.google.com/books/content?id=5pHkAwAAQBAJ&printsec=frontcover&img=1&zoom=1"
   }
 ]

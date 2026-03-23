@@ -15,6 +15,7 @@ final class BookCell: UICollectionViewCell {
         view.contentMode = .scaleAspectFill
         view.clipsToBounds = true
         view.layer.cornerRadius = 8
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -137,7 +138,7 @@ private extension BookCell {
         ])
         rootStack.axis = .horizontal
         rootStack.spacing = 12
-        rootStack.alignment = .center
+        rootStack.alignment = .top
 
         contentView.addSubview(rootStack)
         rootStack.translatesAutoresizingMaskIntoConstraints = false
@@ -174,8 +175,6 @@ private extension BookCell {
         expanded.toggle()
         descLabel.numberOfLines = expanded ? 0 : 3
         readMoreButton.setTitle(expanded ? "Read Less": "Read More", for: .normal)
-        descLabel.invalidateIntrinsicContentSize()
-        contentView.invalidateIntrinsicContentSize()
         onExpandToggle?()
     }
     
@@ -209,7 +208,8 @@ extension BookCell {
         
         
         ImageLoader.imageLoader.load(urlString: book.imageUrl) { [weak self] image in
-            self?.imageView.image = image
+            guard let self = self, self.bookId == book.id else { return }
+            self.imageView.image = image
         }
             
         let isWishlisted = WishListManager.wishlistManager.contains(id: book.id)

@@ -43,6 +43,13 @@ final class HomeViewController: UIViewController {
         return cv
     }()
     
+    private let filterButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Filter", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .medium)
+        return button
+    }()
+    
     private let chips: [String] = ["All","bestSeller","trending"]
     private let viewModel = BookViewModel()
     override func viewDidLoad() {
@@ -57,7 +64,9 @@ private extension HomeViewController {
     func setupTopBar() {
         view.addSubview(titleLabel)
         view.addSubview(searchBar)
+        view.addSubview(filterButton)
         searchBar.delegate = self
+        filterButton.addTarget(self, action: #selector(filterTapped), for: .touchUpInside)
     }
     
     func setupConstraints() {
@@ -72,6 +81,7 @@ private extension HomeViewController {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+        filterButton.translatesAutoresizingMaskIntoConstraints = false
         chipCollectionView.translatesAutoresizingMaskIntoConstraints = false
         bookCollectionView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -79,7 +89,10 @@ private extension HomeViewController {
 
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-
+            
+            filterButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            filterButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            
             searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -98,6 +111,30 @@ private extension HomeViewController {
     }
 }
 
+private extension HomeViewController {
+    @objc func filterTapped() {
+        let alert = UIAlertController(title: "Filter",message: "Sorting By Price", preferredStyle: .actionSheet)
+        let lowtoHigh = UIAlertAction(title: "Low To High", style: .default) {
+            [weak self] _ in
+            guard let self = self else { return }
+            self.viewModel.sortByPrice(ascending: true)
+        }
+        
+        let highToLow = UIAlertAction(title: "High To Low", style: .default) {
+            [weak self] _ in
+            guard let self = self else { return }
+            self.viewModel.sortByPrice(ascending: false)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(lowtoHigh)
+        alert.addAction(highToLow)
+        alert.addAction(cancel)
+        
+        present(alert,animated: true)
+    }
+}
 extension HomeViewController: UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource,BookViewModelDelegate,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,numberOfItemsInSection section: Int) -> Int {
         if collectionView == chipCollectionView {
@@ -141,13 +178,13 @@ extension HomeViewController: UISearchBarDelegate, UICollectionViewDelegate, UIC
             guard viewModel.filteredBooks.indices.contains(indexPath.item) else {
                 return UICollectionViewCell()
             }
+            cell.configure(book: viewModel.filteredBooks[indexPath.item])
             cell.onExpandToggle = {[weak self] in
                 guard let self = self else {return}
                 UIView.animate(withDuration: 0.4) {
                     self.bookCollectionView.performBatchUpdates(nil)
                 }
             }
-            cell.configure(book: viewModel.filteredBooks[indexPath.item])
             return cell
         }
     }
@@ -181,7 +218,7 @@ extension HomeViewController: UISearchBarDelegate, UICollectionViewDelegate, UIC
             return CGSize(width: 120, height: 80)
         }
         else {
-            return CGSize(width: collectionView.bounds.width - 32, height: 280)
+            return CGSize(width: collectionView.bounds.width - 32, height: 250)
         }
     }
 }

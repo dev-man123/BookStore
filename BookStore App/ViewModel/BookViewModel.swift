@@ -81,5 +81,15 @@ extension BookViewModel {
     func numberOfBooks() -> Int {
         return filteredBooks.count
     }
+    
+    func sortByPrice(ascending: Bool) {
+        if ascending {
+            filteredBooks.sort {$0.price < $1.price}
+        }
+        else {
+            filteredBooks.sort {$0.price > $1.price}
+        }
+        delegate?.didUpdateBooks()
+    }
         
 }
