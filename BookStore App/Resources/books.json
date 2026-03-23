@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "description": "Atomic Habits provides a proven framework for improving every day. It explains how small habits compound into remarkable results.",
+    "rating": 4.8,
+    "price": 499,
+    "tag": ["bestSeller"],
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780735211292-M.jpg"
+  },
+  {
+    "id": "2",
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "description": "Deep Work teaches how to focus without distraction in a world full of interruptions.Deep Work teaches how to focus without distraction in a world full of interruptions.",
+    "rating": 4.7,
+    "price": 399,
+    "tag": ["bestSeller","trending"],
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781455586691-M.jpg"
+  },
+  {
+    "id": "3",
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "description": "Timeless lessons on wealth, greed and happiness explaining how people think about money.",
+    "rating": 4.9,
+    "price": 450,
+    "tag": ["bestSeller"],
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780857197689-M.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Rich Dad Poor Dad",
+    "author": "Robert Kiyosaki",
+    "description": "A classic personal finance book explaining the difference between assets and liabilities.",
+    "rating": 4.6,
+    "price": 350,
+    "tag": ["trending"],
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781612680194-M.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Ikigai",
+    "author": "Hector Garcia",
+    "description": "Ikigai explores the Japanese secret to a long and happy life.",
+    "rating": 4.5,
+    "price": 420,
+    "tag": ["trending"],
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780143130727-M.jpg"
+  },
+  {
+    "id": "6",
+    "title": "Think and Grow Rich",
+    "author": "Napoleon Hill",
+    "description": "One of the most influential personal development books ever written.",
+    "rating": 4.4,
+    "price": 300,
+    "tag": ["bestSeller"],
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781585424337-M.jpg"
+  },
+  {
+    "id": "7",
+    "title": "The Alchemist",
+    "author": "Paulo Coelho",
+    "description": "A philosophical story about following your dreams and listening to your heart.",
+    "rating": 4.7,
+    "price": 380,
+    "tag": ["bestSeller","trending"],
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9780061122415-M.jpg"
+  },
+  {
+    "id": "8",
+    "title": "Start With Why",
+    "author": "Simon Sinek",
+    "description": "Explains how great leaders inspire action by focusing on the 'why'.",
+    "rating": 4.6,
+    "price": 410,
+    "tag": ["bestSeller","trending"],
+    "imageUrl": "https://covers.openlibrary.org/b/isbn/9781591846444-M.jpg"
+  }
+]
