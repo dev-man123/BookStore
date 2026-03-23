@@ -71,6 +71,7 @@ final class BookCell: UICollectionViewCell {
     private var bookId: String?
     private var expanded = true
     var onExpandToggle: (() -> Void)?
+    var onWishListToggle: (() -> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -190,6 +191,7 @@ private extension BookCell {
             UIImage(systemName: !isWishlisted ? "heart.fill" : "heart"),
             for: .normal
         )
+        onWishListToggle?()
     }
 }
 

@@ -10,7 +10,8 @@ import UIKit
 enum Tab: Int {
     case home = 0
     case add = 1
-    case profile = 2
+    case wishLsit = 2
+    case profile = 3
 }
 final class MainTabViewController: UITabBarController {
     private var initialTab: Tab = .home
@@ -25,13 +26,15 @@ private extension MainTabViewController {
     private func setupTabs() {
         let homeVC = HomeViewController()
         let addVC = AddViewController()
+        let wishlistVC = WishlistViewController()
         let profileVC = ProfileViewController()
         
         homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
         addVC.tabBarItem = UITabBarItem(title: "Add", image: UIImage(systemName: "plus.circle.fill"), tag: 1)
-        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
+        wishlistVC.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "heart.fill"), tag: 2)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 3)
         
-        viewControllers = [homeVC,addVC,profileVC]
+        viewControllers = [homeVC,addVC,wishlistVC,profileVC]
         selectedIndex = initialTab.rawValue
         
     }
