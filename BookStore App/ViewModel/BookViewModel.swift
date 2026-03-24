@@ -44,6 +44,7 @@ extension BookViewModel {
         filteredBooks = result
         delegate?.didUpdateBooks()
     }
+    
     func search(query: String) {
         searchQuery = query
         applyFilters()
@@ -82,6 +83,15 @@ extension BookViewModel {
         return filteredBooks.count
     }
     
+    func toggleIsExpanded(bookId: String) {
+        let bookIndex = filteredBooks.firstIndex(where: {$0.id == bookId})
+        if let bookIndex = bookIndex {
+            filteredBooks[bookIndex].isExpanded.toggle()
+            if let masterIndex = books.firstIndex(where: {$0.id == bookId}) {
+                books[masterIndex].isExpanded = filteredBooks[bookIndex].isExpanded
+                }
+        }
+    }
     func sortByPrice(ascending: Bool) {
         if ascending {
             filteredBooks.sort {$0.price < $1.price}

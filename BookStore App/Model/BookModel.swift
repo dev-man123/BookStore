@@ -14,4 +14,9 @@ struct Book: Codable {
     let price: Int
     let tag: [Tag]
     let imageUrl: String
+    var isExpanded: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+            case id, title, author, description, rating, price, tag, imageUrl
+        }
 }

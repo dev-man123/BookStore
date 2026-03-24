@@ -23,6 +23,7 @@ final class WishlistViewController: UIViewController {
         cv.register(BookCell.self,forCellWithReuseIdentifier: BookCell.identifier)
         cv.backgroundColor = .clear
         layout.minimumLineSpacing = 16
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         cv.alwaysBounceVertical = true
         return cv
     }()
@@ -95,6 +96,15 @@ extension WishlistViewController: UICollectionViewDataSource, UICollectionViewDe
         guard wishlistBooks.indices.contains(indexPath.item) else {return UICollectionViewCell()}
         
         cell.configure(book: wishlistBooks[indexPath.item])
+        cell.onExpandToggle = { [weak self] bookId in
+            guard let self = self else { return }
+            if let index = self.wishlistBooks.firstIndex(where: {$0.id == bookId}) {
+                wishlistBooks[index].isExpanded.toggle()
+                cell.configure(book: wishlistBooks[index])
+            }
+            self.collectionView.performBatchUpdates(nil)
+        }
+        
         cell.onWishListToggle = {[weak self] in
             guard let self = self else { return }
             self.loadWishList()
@@ -105,7 +115,8 @@ extension WishlistViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: collectionView.bounds.width - 32, height: 250)
+        let padding : CGFloat = 32
+        let width = collectionView.frame.width - padding
+        return CGSize(width: width, height: 200)
     }
 }

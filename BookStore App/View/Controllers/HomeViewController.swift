@@ -180,12 +180,13 @@ extension HomeViewController: UISearchBarDelegate, UICollectionViewDelegate, UIC
                 return UICollectionViewCell()
             }
             cell.configure(book: viewModel.filteredBooks[indexPath.item])
-            cell.onExpandToggle = {[weak self] in
+            cell.onExpandToggle = {[weak self] bookId in
                 guard let self = self else {return}
-                UIView.animate(withDuration: 0.4) {
-                    self.bookCollectionView.collectionViewLayout.invalidateLayout()
-                    self.bookCollectionView.performBatchUpdates(nil)
+                self.viewModel.toggleIsExpanded(bookId: bookId)
+                if let book = self.viewModel.filteredBooks.first(where: { $0.id == bookId }) {
+                    cell.configure(book: book)
                 }
+                    self.bookCollectionView.performBatchUpdates(nil)
             }
             return cell
         }

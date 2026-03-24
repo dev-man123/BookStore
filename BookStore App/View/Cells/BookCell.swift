@@ -55,7 +55,7 @@ final class BookCell: UICollectionViewCell {
     
     private let readMoreButton : UIButton = {
         let button = UIButton()
-        button.setTitle("Read Less", for: .normal)
+        button.setTitle("Read More", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         return button
     }()
@@ -66,8 +66,8 @@ final class BookCell: UICollectionViewCell {
     }()
 
     private var bookId: String?
-    private var expanded = false
-    var onExpandToggle: (() -> Void)?
+    
+    var onExpandToggle: ((String) -> Void)?
     var onWishListToggle: (() -> Void)?
 
     override init(frame: CGRect) {
@@ -94,10 +94,9 @@ private extension BookCell {
         leftStack.spacing = 6
         leftStack.alignment = .center
         leftStack.distribution = .fill
-        /*leftStack.widthAnchor.constraint(equalToConstant: 90).isActive = true*/
+
         imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 110).isActive = true
-        /*tagsStack.widthAnchor.constraint(equalToConstant: 86).isActive = true*/
 
         let descStack = UIStackView(arrangedSubviews: [
             descLabel,
@@ -171,13 +170,11 @@ private extension BookCell {
     }
     
     @objc func toggleDesc() {
-        expanded.toggle()
-        descLabel.numberOfLines = expanded ? 0 : 3
-        readMoreButton.setTitle(expanded ? "Read Less": "Read More", for: .normal)
-        onExpandToggle?()
+        guard let bookId = bookId else { return }
+        onExpandToggle?(bookId)
     }
     
-    @objc  func toggleWishlist() {
+    @objc func toggleWishlist() {
         guard let id = bookId else { return }
         let isWishlisted = WishListManager.wishlistManager.contains(id: id)
         if isWishlisted {
@@ -200,6 +197,8 @@ extension BookCell {
         authorLabel.text = book.author
         ratingLabel.text = "⭐️ \(book.rating)"
         descLabel.text = book.description
+        descLabel.numberOfLines = book.isExpanded ? 0 : 3
+        readMoreButton.setTitle(book.isExpanded ? "Read Less" : "Read More", for: .normal)
         
         let allTag = book.tag
         tagsStack.arrangedSubviews.forEach { $0.removeFromSuperview()}
@@ -223,9 +222,6 @@ extension BookCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
-        expanded = false
-        descLabel.numberOfLines = 3
-        readMoreButton.setTitle("Read More", for: .normal)
         tagsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
     
