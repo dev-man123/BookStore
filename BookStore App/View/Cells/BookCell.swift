@@ -30,7 +30,6 @@ final class BookCell: UICollectionViewCell {
     private let titleLabel : UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
-        label.heightAnchor.constraint(equalToConstant: 20).isActive = true
         return label
     }()
     
@@ -38,20 +37,18 @@ final class BookCell: UICollectionViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14)
         label.textColor = .black
-        label.heightAnchor.constraint(equalToConstant: 16).isActive = true
         return label
     }()
     
     private let ratingLabel : UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 13)
-        label.heightAnchor.constraint(equalToConstant: 16).isActive = true
         return label
     }()
     
     private let descLabel : UILabel = {
         let label = UILabel()
-        label.numberOfLines = 5
+        label.numberOfLines = 3
         label.font = .systemFont(ofSize: 13)
         return label
     }()
@@ -69,7 +66,7 @@ final class BookCell: UICollectionViewCell {
     }()
 
     private var bookId: String?
-    private var expanded = true
+    private var expanded = false
     var onExpandToggle: (() -> Void)?
     var onWishListToggle: (() -> Void)?
 
@@ -109,7 +106,6 @@ private extension BookCell {
         descStack.axis = .vertical
         descStack.spacing = 4
         
-        descLabel.numberOfLines = 3
         descLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         descLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         readMoreButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
@@ -132,6 +128,8 @@ private extension BookCell {
         rightStack.axis = .vertical
         rightStack.spacing = 6
         rightStack.alignment = .fill
+        rightStack.setContentHuggingPriority(.required, for: .vertical)
+        rightStack.setContentCompressionResistancePriority(.required, for: .vertical)
 
         let rootStack = UIStackView(arrangedSubviews: [
             leftStack,
@@ -221,11 +219,24 @@ extension BookCell {
         )
         
     }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         imageView.image = nil
         expanded = false
+        descLabel.numberOfLines = 3
+        readMoreButton.setTitle("Read More", for: .normal)
         tagsStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+    }
+    
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let targetSize = CGSize(width: layoutAttributes.frame.width,height: 0)
+        let size = contentView.systemLayoutSizeFitting(targetSize,
+                  withHorizontalFittingPriority: .required,
+                  verticalFittingPriority: .fittingSizeLevel)
+        let newAttributes = layoutAttributes
+        newAttributes.frame.size = size
+        return newAttributes
     }
     
 }

@@ -39,6 +39,7 @@ final class HomeViewController: UIViewController {
         cv.register(BookCell.self,forCellWithReuseIdentifier: BookCell.identifier)
         cv.backgroundColor = .clear
         layout.minimumLineSpacing = 16
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         cv.alwaysBounceVertical = true
         return cv
     }()
@@ -182,6 +183,7 @@ extension HomeViewController: UISearchBarDelegate, UICollectionViewDelegate, UIC
             cell.onExpandToggle = {[weak self] in
                 guard let self = self else {return}
                 UIView.animate(withDuration: 0.4) {
+                    self.bookCollectionView.collectionViewLayout.invalidateLayout()
                     self.bookCollectionView.performBatchUpdates(nil)
                 }
             }
@@ -218,7 +220,9 @@ extension HomeViewController: UISearchBarDelegate, UICollectionViewDelegate, UIC
             return CGSize(width: 120, height: 80)
         }
         else {
-            return CGSize(width: collectionView.bounds.width - 32, height: 250)
+            let padding : CGFloat = 32
+            let width = collectionView.frame.width - padding
+            return CGSize(width: width, height: 250)
         }
     }
 }
