@@ -59,6 +59,12 @@ final class HomeViewController: UIViewController {
         setupTopBar()
         setupConstraints()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.setupBooks()
+        
+    }
 }
 
 private extension HomeViewController {

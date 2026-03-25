@@ -57,6 +57,7 @@ final class BookCell: UICollectionViewCell {
         let button = UIButton()
         button.setTitle("Read More", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 13)
         return button
     }()
     private let wishlistButton : UIButton = {
@@ -103,7 +104,7 @@ private extension BookCell {
             readMoreButton
         ])
         descStack.axis = .vertical
-        descStack.spacing = 4
+        descStack.spacing = 1
         
         descLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         descLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
@@ -125,7 +126,7 @@ private extension BookCell {
             bottomRow
         ])
         rightStack.axis = .vertical
-        rightStack.spacing = 6
+        rightStack.spacing = 2
         rightStack.alignment = .fill
         rightStack.setContentHuggingPriority(.required, for: .vertical)
         rightStack.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -197,7 +198,7 @@ extension BookCell {
         authorLabel.text = book.author
         ratingLabel.text = "⭐️ \(book.rating)"
         descLabel.text = book.description
-        descLabel.numberOfLines = book.isExpanded ? 0 : 3
+        descLabel.numberOfLines = book.isExpanded ? 0 : 1
         readMoreButton.setTitle(book.isExpanded ? "Read Less" : "Read More", for: .normal)
         
         let allTag = book.tag
@@ -228,11 +229,10 @@ extension BookCell {
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let targetSize = CGSize(width: layoutAttributes.frame.width,height: 0)
         let size = contentView.systemLayoutSizeFitting(targetSize,
-                  withHorizontalFittingPriority: .required,
+                  withHorizontalFittingPriority: .defaultHigh,
                   verticalFittingPriority: .fittingSizeLevel)
         let newAttributes = layoutAttributes
         newAttributes.frame.size = size
         return newAttributes
     }
-    
 }

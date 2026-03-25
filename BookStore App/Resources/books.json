@@ -7,16 +7,16 @@
     "rating": 4.8,
     "price": 499,
     "tag": ["bestSeller"],
-    "imageUrl": "https://books.google.com/books/content?id=Yj9jDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
+    "imageUrl": "https://books.google.com/books/content?id=XfFvDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "2",
     "title": "Deep Work",
     "author": "Cal Newport",
-    "description": "Deep Work teaches how to focus without distraction in a world full of interruptions.Deep Work teaches how to focus without distraction in a world full of interruptions.",
+    "description": "Deep Work teaches how to focus without distraction in a world full of interruptions.",
     "rating": 4.7,
     "price": 399,
-    "tag": ["bestSeller","trending"],
+    "tag": ["bestSeller", "trending"],
     "imageUrl": "https://books.google.com/books/content?id=SlhADAAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
@@ -37,7 +37,7 @@
     "rating": 4.6,
     "price": 350,
     "tag": ["trending"],
-    "imageUrl": "https://books.google.com/books/content?id=KQ4XBAAAQBAJ&printsec=frontcover&img=1&zoom=1"
+    "imageUrl": "https://books.google.com/books/content?id=3S8DEAAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "5",
@@ -66,8 +66,8 @@
     "description": "A philosophical story about following your dreams and listening to your heart.",
     "rating": 4.7,
     "price": 380,
-    "tag": ["bestSeller","trending"],
-    "imageUrl": "https://books.google.com/books/content?id=6JblDwAAQBAJ&printsec=frontcover&img=1&zoom=1"
+    "tag": ["bestSeller", "trending"],
+    "imageUrl": "https://books.google.com/books/content?id=m6XpCgAAQBAJ&printsec=frontcover&img=1&zoom=1"
   },
   {
     "id": "8",
@@ -76,7 +76,7 @@
     "description": "Explains how great leaders inspire action by focusing on the 'why'.",
     "rating": 4.6,
     "price": 410,
-    "tag": ["bestSeller","trending"],
+    "tag": ["bestSeller", "trending"],
     "imageUrl": "https://books.google.com/books/content?id=5pHkAwAAQBAJ&printsec=frontcover&img=1&zoom=1"
   }
 ]

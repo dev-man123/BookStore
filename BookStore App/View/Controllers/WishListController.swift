@@ -16,6 +16,16 @@ final class WishlistViewController: UIViewController {
         return label
     }()
     
+    private let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Your wishlist is empty.\nStart adding some books!"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.textColor = .gray
+        return label
+    }()
+    
     private var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -72,6 +82,12 @@ private extension WishlistViewController {
         let wishListIds = WishListManager.wishlistManager.getWishList()
         let allBooks = viewModel.books
         wishlistBooks = allBooks.filter { wishListIds.contains($0.id) }
+        if wishlistBooks.isEmpty {
+            collectionView.backgroundView = emptyLabel
+        }
+        else {
+            collectionView.backgroundView = nil
+        }
         collectionView.reloadData()
     }
     

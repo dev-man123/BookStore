@@ -29,14 +29,18 @@ private extension MainTabViewController {
         let wishlistVC = WishlistViewController()
         let profileVC = ProfileViewController()
         
-        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
-        addVC.tabBarItem = UITabBarItem(title: "Add", image: UIImage(systemName: "plus.circle.fill"), tag: 1)
-        wishlistVC.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "heart.fill"), tag: 2)
-        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 3)
+        let homeNav = UINavigationController(rootViewController: homeVC)
+        let addNav = UINavigationController(rootViewController: addVC)
+        let wishlistNav = UINavigationController(rootViewController: wishlistVC)
+        let profileNav = UINavigationController(rootViewController: profileVC)
         
-        viewControllers = [homeVC,addVC,wishlistVC,profileVC]
+        homeNav.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
+        addNav.tabBarItem = UITabBarItem(title: "Add", image: UIImage(systemName: "plus.circle.fill"), tag: 1)
+        wishlistNav.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "heart.fill"), tag: 2)
+        profileNav.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 3)
+        
+        viewControllers = [homeNav, addNav, wishlistNav, profileNav]
         selectedIndex = initialTab.rawValue
-        
     }
 }
 

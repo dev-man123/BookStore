@@ -12,11 +12,20 @@ final class BookLoader {
     private init() {}
 }
 
-extension BookLoader {
-    func load() -> [Book] {
-        guard let url = Bundle.main.url(forResource: "books", withExtension: "json") , let data = try? Data(contentsOf: url), let books = try? JSONDecoder().decode([Book].self, from: data) else {
+private extension BookLoader {
+    func JSONBookLoader() -> [Book] {
+        guard let url = Bundle.main.url(forResource: "books", withExtension: "json") , let jsonData = try? Data(contentsOf: url), let jsonBooks = try? JSONDecoder().decode([Book].self, from: jsonData) else {
              return []
         }
-        return books
+        return jsonBooks
+    }
+}
+extension BookLoader {
+    func load() -> [Book] {
+        let jsonBooks = JSONBookLoader()
+        guard let customData = UserDefaults.standard.data(forKey:"custom_books"), let customBooks = try? JSONDecoder().decode([Book].self, from: customData) else {
+            return jsonBooks
+        }
+        return jsonBooks + customBooks
     }
 }

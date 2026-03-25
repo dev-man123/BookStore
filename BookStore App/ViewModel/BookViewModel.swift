@@ -21,15 +21,13 @@ final class BookViewModel {
     }
 }
 
-private extension BookViewModel {
+extension BookViewModel {
     func setupBooks() {
         books = BookLoader.bookLoader.load()
         filteredBooks = books
         delegate?.didUpdateBooks()
     }
-}
-
-extension BookViewModel {
+    
     func applyFilters() {
         var result = books
         if !selectedTags.isEmpty {
