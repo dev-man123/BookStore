@@ -30,6 +30,7 @@ final class BookCell: UICollectionViewCell {
     private let titleLabel : UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 16)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -60,6 +61,7 @@ final class BookCell: UICollectionViewCell {
         button.titleLabel?.font = .systemFont(ofSize: 13)
         return button
     }()
+    
     private let wishlistButton : UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -95,7 +97,6 @@ private extension BookCell {
         leftStack.spacing = 6
         leftStack.alignment = .center
         leftStack.distribution = .fill
-
         imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 110).isActive = true
 
@@ -105,11 +106,9 @@ private extension BookCell {
         ])
         descStack.axis = .vertical
         descStack.spacing = 1
-        
         descLabel.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         descLabel.setContentHuggingPriority(.defaultLow, for: .vertical)
         readMoreButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
-
         
         let spacer = UIView()
         let bottomRow = UIStackView(arrangedSubviews: [spacer, wishlistButton])
@@ -217,7 +216,6 @@ extension BookCell {
             UIImage(systemName: isWishlisted ? "heart.fill" : "heart"),
             for: .normal
         )
-        
     }
     
     override func prepareForReuse() {

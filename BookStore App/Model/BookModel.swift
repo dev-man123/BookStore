@@ -17,6 +17,7 @@ struct Book: Codable {
     var isExpanded: Bool = false
     
     enum CodingKeys: String, CodingKey {
-            case id, title, author, description, rating, price, tag, imageUrl
-        }
+        case id, title, author, description, rating, price, tag, imageUrl
+        
+    }
 }

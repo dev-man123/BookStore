@@ -63,7 +63,6 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.setupBooks()
-        
     }
 }
 
@@ -93,7 +92,6 @@ private extension HomeViewController {
         bookCollectionView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             
@@ -105,8 +103,8 @@ private extension HomeViewController {
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
             chipCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 8),
-            chipCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            chipCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            chipCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            chipCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
             chipCollectionView.heightAnchor.constraint(equalToConstant: 50),
 
             bookCollectionView.topAnchor.constraint(equalTo: chipCollectionView.bottomAnchor, constant: 8),
@@ -161,6 +159,7 @@ extension HomeViewController: UISearchBarDelegate, UICollectionViewDelegate, UIC
             guard chips.indices.contains(indexPath.item) else {
                 return UICollectionViewCell()
             }
+            
             let chip = chips[indexPath.item]
             let isSelected: Bool
             
@@ -185,6 +184,7 @@ extension HomeViewController: UISearchBarDelegate, UICollectionViewDelegate, UIC
             guard viewModel.filteredBooks.indices.contains(indexPath.item) else {
                 return UICollectionViewCell()
             }
+            
             cell.configure(book: viewModel.filteredBooks[indexPath.item])
             cell.onExpandToggle = {[weak self] bookId in
                 guard let self = self else {return}

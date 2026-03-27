@@ -16,6 +16,8 @@ final class BookViewModel {
     private(set) var filteredBooks: [Book] = []
     private var selectedTags: Set<Tag> = []
     private var searchQuery: String = ""
+    private var searchTimer: Timer?
+    
     init() {
         setupBooks()
     }
@@ -45,7 +47,15 @@ extension BookViewModel {
     
     func search(query: String) {
         searchQuery = query
-        applyFilters()
+        searchTimer?.invalidate()
+        
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) {
+            [weak self] _ in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.applyFilters()
+            }
+        }
     }
     
     func toggleTag(tag: Tag) {
@@ -90,6 +100,7 @@ extension BookViewModel {
                 }
         }
     }
+    
     func sortByPrice(ascending: Bool) {
         if ascending {
             filteredBooks.sort {$0.price < $1.price}

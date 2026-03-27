@@ -45,6 +45,7 @@ extension ImageLoader {
                 }
                 return
             }
+            
             self.cache.setObject(image, forKey: urlString as NSString)
             DispatchQueue.main.async {
                 completion(image)
